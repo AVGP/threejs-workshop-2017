@@ -10,13 +10,16 @@ window.addEventListener('resize', function() {
 
 // Our world
 
-var box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshLambertMaterial());
+var box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshLambertMaterial({
+  map: THREE.ImageUtils.loadTexture('images/bricks-diffuse.png')
+}));
 box.position.set(-3, 0, -5);
 scene.add(box);
 
 var box2 = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshPhongMaterial({
   shininess: 100,
-  specular: 0xffffff
+  specular: 0xffffff,
+  map: THREE.ImageUtils.loadTexture('images/bricks-diffuse.png')  
 }));
 box2.position.set(3, 0, -5);
 scene.add(box2);
