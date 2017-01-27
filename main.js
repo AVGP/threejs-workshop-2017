@@ -10,9 +10,26 @@ window.addEventListener('resize', function() {
 
 // Our world
 
-var box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial());
-box.position.z = -5;
+var box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshLambertMaterial());
+box.position.set(-3, 0, -5);
 scene.add(box);
+
+var box2 = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshPhongMaterial({
+  shininess: 100,
+  specular: 0xffffff
+}));
+box2.position.set(3, 0, -5);
+scene.add(box2);
+
+
+// light
+var light = new THREE.PointLight(0xff0000, 1.0, 50);
+light.position.set(-5, 0, -2);
+scene.add(light);
+
+var light2 = new THREE.PointLight(0x00ff00, 1.0, 50);
+light2.position.set(5, 0, -2);
+scene.add(light2);
 
 // Start!
 document.body.appendChild(renderer.domElement);
@@ -22,6 +39,7 @@ render();
 
 function render() {
   requestAnimationFrame(render);
-  box.rotation.y += Math.PI / 100;
+  box.rotation.y += Math.PI / 200;
+  box2.rotation.y += Math.PI / 200;
   renderer.render(scene, camera);
 }
